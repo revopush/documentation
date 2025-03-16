@@ -64,8 +64,7 @@ workflows:
       - publish-react-native-bundle
 ```
 
-## Support
+## Questions, Issues and Support
 
-For issues [https://github.com/revopush/revopush-circleci-orb/issues](https://github.com/revopush/revopush-circleci-orb/issues)
-
-For questions [support@revopush.org](mailto:support@revopush.org)
+If you have any questions or issues with this action, please [open an issue](https://github.com/revopush/revopush-circleci-orb/issues)
+on this repository or send email to [support@revopush.org](mailto:support@revopush.org).

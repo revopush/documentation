@@ -77,6 +77,13 @@ export default defineConfig({
                     {text: 'Bitrise', link: '/cicd/bitrise'},
                     {text: 'CircleCI', link: '/cicd/circleci'},
                 ]
+            },
+            {
+                text: 'Support',
+                collapsed: true,
+                items: [
+                    {text: 'Contact us', link: '/support/contactus'},
+                ]
             }
         ],
 
