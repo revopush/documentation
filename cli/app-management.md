@@ -24,7 +24,7 @@ _NOTE: Using the same app for iOS and Android may cause installation exceptions 
 All new apps automatically come with two deployments (`Staging` and `Production`) so that you can begin distributing updates to multiple channels without needing to do anything extra (see deployment instructions below). After you create an app, the CLI will output the deployment keys for the `Staging` and `Production` deployments, 
 which you can begin using to configure your mobile clients with the [React Native](https://github.com/revopush/react-native-code-push) SDK.
 
-If you decide that you don't like the name you gave to an app, you can rename it at any time using the following command:
+At any time if you wish you can rename app using the following command:
 
 ```shell
 revopush app rename <appName> <newAppName>
@@ -38,7 +38,7 @@ If at some point you no longer need an app, you can remove it from the server us
 revopush app rm <appName>
 ```
 
-Do this with caution since any apps that have been configured to use it will obviously stop receiving updates.
+**Do this with caution** since any apps that have been configured to use it will obviously stop receiving updates.
 
 Finally, if you want to list all apps that you've registered with the Revopush server,
 you can run the following command:
