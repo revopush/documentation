@@ -10,15 +10,15 @@ First, you need to create an account at the following service: https://app.revop
 
 1. Go to Applications and create new application
 
-![Add new application](../public/images/intro/add-new-app.png)
+![Add new application](/images/intro/add-new-app.png)
 
 2. Enter application name and save it
 
-![Add new application modal](../public/images/intro/add-new-app-modal.png)
+![Add new application modal](/images/intro/add-new-app-modal.png)
 
 3. As a result, you will see your application in the list with two deployments
 
-![Application list](../public/images/intro/add-new-app-list.png)
+![Application list](/images/intro/add-new-app-list.png)
 
 
 ## Setup mobile client SDK
@@ -38,7 +38,7 @@ If you need React Native > 0.76, or you need support for New Architecture, you c
 
 After you configure your React Native application got to app settings to get Deployment keys:
 
-![Application deployments](../public/images/intro/deployments-list.png)
+![Application deployments](/images/intro/deployments-list.png)
 
 ### Setup deployment key for iOS
 
