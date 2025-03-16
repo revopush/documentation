@@ -1,4 +1,4 @@
-# `revopush-github-action` GitHub Action
+# Revopush GitHub Action
 
 Configures the Revopush Command Line Interface in the GitHub Actions environment.
 
