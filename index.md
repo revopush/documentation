@@ -27,5 +27,5 @@ The service consists of three main parts:
 3. CodePush SDK – a React Native library that allows apps to receive and apply updates from the CodePush server.
 
 ::: warning
-This service was provided by Microsoft as part of App Center, which will be shut down on **March 31, 2025**.
+This service was provided by Microsoft as part of App Center, which will be [retired](https://learn.microsoft.com/en-us/appcenter/retirement) on **March 31, 2025**.
 :::
