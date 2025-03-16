@@ -50,7 +50,7 @@ export default defineConfig({
                 { text: 'Getting started', link: '/sdk/getting-started' },
                 { text: 'iOS Setup', link: '/sdk/ios' },
                 { text: 'Android Setup', link: '/sdk/android' },
-                { text: 'Java Script API', link: '/sdk/api-js' },
+                { text: 'JavaScript API', link: '/sdk/api-js' },
                 { text: 'Android API', link: '/sdk/api-android' },
                 { text: 'iOS API', link: '/sdk/api-ios' },
                 { text: 'Multi-Deployment Testing iOS', link: '/sdk/multi-deployment-testing-ios' },
