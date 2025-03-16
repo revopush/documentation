@@ -12,7 +12,7 @@ export default defineConfig({
     sitemap: {
         hostname: 'https://docs.revopush.org'
     },
-    srcExclude: ['*/README.md'],
+    srcExclude: ['**/README.md'],
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
         nav: [
