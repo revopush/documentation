@@ -6,9 +6,9 @@ This 5-minute guide will help you to set up your first Revopush integration
 
 First, you need to create an account at the following service: https://app.revopush.org/register
 
-## Create application
+## Create an application
 
-1. Go to Applications and create new application
+1. Go to [Applications](https://app.revopush.org/applications) and add an application
 
 ![Add new application](../public/images/intro/add-new-app.png)
 
@@ -16,19 +16,19 @@ First, you need to create an account at the following service: https://app.revop
 
 ![Add new application modal](../public/images/intro/add-new-app-modal.png)
 
-3. As a result, you will see your application in the list with two deployments
+3. As a result, you will see your application in the list with two deployments available out of the box
 
 ![Application list](../public/images/intro/add-new-app-list.png)
 
 
 ## Setup mobile client SDK
 
-First, you need to decide what client to use. We support two options.
+First, you need to decide what client SDK to use. We support two options:
 
-If you use React Native up to 0.76 and old architecture, you should stay on a Microsoft CodePUsh client SDK. 
-[Read here](https://github.com/microsoft/react-native-code-push) how to configure Microsoft CodePUsh SDK.
+- If you use React Native **<0.76** and old architecture, you should stay on a Microsoft CodePush client SDK. 
+[Read here](https://github.com/microsoft/react-native-code-push) how to configure Microsoft CodePush SDK.
 
-If you need React Native > 0.76, or you need support for New Architecture, you can choose our client SDK. 
+- If you need React Native **>=0.76**, or you need support for New Architecture, you need to use Revopush client SDK. 
 [Read here](https://github.com/revopush/react-native-code-push) how to configure Revopush SDK.
 
 | React Native version(s) | Supporting CodePush version(s)                                                           |             
@@ -36,7 +36,7 @@ If you need React Native > 0.76, or you need support for New Architecture, you c
 | <v0.76                | Use old Microsoft [CodePush client](https://github.com/microsoft/react-native-code-push) |
 | v0.76, v0.77, 0.78    | Use [Revopush SDK](https://github.com/revopush/react-native-code-push) (Support both New and Old Architectures)                                                                             |
 
-After you configure your React Native application got to app settings to get Deployment keys:
+After you configure your React Native application go to app settings to get Deployment keys:
 
 ![Application deployments](../public/images/intro/deployments-list.png)
 
@@ -47,9 +47,6 @@ Add the `CodePushServerURL` and `CodePushDeploymentKey` to the file `ios/[Projec
 ```xml
 <key>CodePushServerURL</key>
 <string>https://api.revopush.org</string>
-```
-
-```xml
 <key>CodePushDeploymentKey</key>
 <string>YOUR_DEPLOYMENT_KEY</string>
 ```
@@ -61,13 +58,9 @@ Add the `CodePushServerUrl` and `CodePushDeploymentKey` to the file `android/app
 ```xml
 <resources>
     <string moduleConfig="true" name="CodePushServerUrl">https://api.revopush.org</string>
-</resources>
-```
-
-```xml
-<resources>
     <string moduleConfig="true" name="CodePushDeploymentKey">YOUR_DEPLOYMENT_KEY</string>
 </resources>
+
 ```
 
 ## Configure CLI
@@ -97,7 +90,7 @@ Enter your access key:
 
 Read more about [Revopush CLI](/cli/getting-started)
 
-## Make release
+## Make a release
 
 In the root folder of a React Native project, run these commands
 
@@ -111,6 +104,6 @@ revopush release-react <APPLICATION_NAME> android -d <DEPLOYMENT_NAME>
 
 Read more about Releases in [Releasing updates guide](/cli/releasing-updates)
 
-## App center Migration
+## App Center Migration
 
-If you migrate your applications from App center follow our [step-by-step guide](/migration/guide).
+If you migrate your applications from App Center follow our [step-by-step guide](/migration/guide).

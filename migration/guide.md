@@ -1,4 +1,4 @@
-# Migration guide from App center CodePush to Revopush
+# Migration guide from App Center CodePush to Revopush
 
 **Guide Overview:**
 1. [Introduction](#1-introduction)
