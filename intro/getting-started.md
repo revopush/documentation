@@ -95,6 +95,8 @@ Visit https://app.revopush.org/cli-login?hostname=<YOUR_HOST_NAME> and enter the
 Enter your access key:
 ```
 
+Read more about [Revopush CLI](/cli/getting-started)
+
 ## Make release
 
 In the root folder of a React Native project, run these commands
@@ -108,3 +110,7 @@ revopush release-react <APPLICATION_NAME> android -d <DEPLOYMENT_NAME>
 ```
 
 Read more about Releases in [Releasing updates guide](/cli/releasing-updates)
+
+## App center Migration
+
+If you migrate your applications from App center follow our [step-by-step guide](/migration/guide).
