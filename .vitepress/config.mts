@@ -13,8 +13,10 @@ export default defineConfig({
       { text: 'Dashboard', link: 'https://app.revopush.org/' },
       { text: 'Blog', link: 'https://revopush.org/' }
     ],
-
-      logo: '/logo.svg',
+    logo: '/logo.svg',
+    search: {
+        provider: 'local'
+    },
 
     sidebar: [
       {
