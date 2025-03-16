@@ -35,7 +35,7 @@ Constructs the CodePush client runtime and represents the `ReactPackage` instanc
 
     2. The local cache that the React Native runtime maintains in debug mode is deleted whenever a CodePush update is installed. This ensures that when the app is restarted after an update is applied, you will see the expected changes. As soon as [this PR](https://github.com/facebook/react-native/pull/4738) is merged, we won't need to do this anymore.
 
-- **CodePush(String deploymentKey, Context context, boolean isDebugMode, Integer publicKeyResourceDescriptor)** - Equivalent to the previous constructor, but allows you to specify the public key resource descriptor needed to read public key content. Please refer to [Code Signing](setup-android.md#code-signing-setup) section for more details about the Code Signing Feature.
+- **CodePush(String deploymentKey, Context context, boolean isDebugMode, Integer publicKeyResourceDescriptor)** - Equivalent to the previous constructor, but allows you to specify the public key resource descriptor needed to read public key content. Please refer to [Code Signing](/sdk/android#code-signing-setup) section for more details about the Code Signing Feature.
 
 - **CodePush(String deploymentKey, Context context, boolean isDebugMode, String serverUrl)** Constructor allows you to specify CodePush Server Url. The Default value: `"https://api.revopush.org"` is overridden by value specified in `serverUrl`.
 
