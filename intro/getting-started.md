@@ -1,4 +1,4 @@
-# Revopush Uer guide
+# Revopush User guide
 
 This 5-minute guide will help you to set up your first Revopush integration
 
