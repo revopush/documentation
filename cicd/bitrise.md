@@ -1,4 +1,4 @@
-# Revopush command line interface
+# Revopush Bitrise integration
 
 Utilise revopush cli commands inside of bitrise step
 

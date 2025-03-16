@@ -1,4 +1,4 @@
-# Getting started
+# Revopush Uer guide
 
 This 5-minute guide will help you to set up your first Revopush integration
 
@@ -10,15 +10,15 @@ First, you need to create an account at the following service: https://app.revop
 
 1. Go to [Applications](https://app.revopush.org/applications) and add an application
 
-![Add new application](../public/images/intro/add-new-app.png)
+![Add new application](/images/intro/add-new-app.png)
 
 2. Enter application name and save it
 
-![Add new application modal](../public/images/intro/add-new-app-modal.png)
+![Add new application modal](/images/intro/add-new-app-modal.png)
 
 3. As a result, you will see your application in the list with two deployments available out of the box
 
-![Application list](../public/images/intro/add-new-app-list.png)
+![Application list](/images/intro/add-new-app-list.png)
 
 
 ## Setup mobile client SDK
@@ -38,7 +38,7 @@ First, you need to decide what client SDK to use. We support two options:
 
 After you configure your React Native application go to app settings to get Deployment keys:
 
-![Application deployments](../public/images/intro/deployments-list.png)
+![Application deployments](/images/intro/deployments-list.png)
 
 ### Setup deployment key for iOS
 
