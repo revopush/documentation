@@ -99,6 +99,9 @@ If you want to change the default HTTP security configuration for any of these d
   <dict>
     <!-- ...other configs... -->
 
+    <key>CodePushServerURL</key>
+	  <string>https://api.revopush.org</string>
+
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSExceptionDomains</key>
