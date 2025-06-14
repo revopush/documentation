@@ -51,24 +51,26 @@ If you ever want an update to target multiple versions of the app store binary, 
 | ---------------- | -------------------------------------------------------------------------------------- |
 | `1.2.3`          | Only devices running the specific binary app store version `1.2.3` of your app         |
 | `*`              | Any device configured to consume updates from your CodePush app                        |
-| `1.2.x`          | Devices running major version 1, minor version 2 and any patch version of your app     |
+| `1.2.x`          | Devices running major version `1`, minor version `2` and any patch version of your app |
 | `1.2.3 - 1.2.7`  | Devices running any binary version between `1.2.3` (inclusive) and `1.2.7` (inclusive) |
 | `>=1.2.3 <1.2.7` | Devices running any binary version between `1.2.3` (inclusive) and `1.2.7` (exclusive) |
 | `~1.2.3`         | Equivalent to `>=1.2.3 <1.3.0`                                                         |
 | `^1.2.3`         | Equivalent to `>=1.2.3 <2.0.0`                                                         |
 
-_NOTE: If your semver expression starts with a special shell character or operator such as `>`, `^`, or \*\*
-_, the command may not execute correctly if you do not wrap the value in quotes as the shell will not supply the right values to our CLI process. Therefore, it is best to wrap your `targetBinaryVersion` parameter in double quotes when calling the `release` command, e.g. `revopush release MyApp-iOS updateContents ">1.2.3"`.\*
+_NOTE: If your semver expression starts with a special shell character or operator such as `>`, `^`, or `*`, 
+the command may not execute correctly if you do not wrap the value in quotes as the shell will not supply the right values to our CLI process. 
+Therefore, it is best to wrap your `targetBinaryVersion` parameter in double quotes when calling the `release` command,
+e.g. `revopush release MyApp-iOS updateContents ">1.2.3"`._
+
 
 _NOTE: As defined in the semver spec, ranges only work for non pre-release versions: https://github.com/npm/node-semver#prerelease-tags. If you want to update a version with pre-release tags, then you need to write the exact version you want to update (`1.2.3-beta` for example)._
 
 The following table outlines the version value that CodePush expects your update's semver range to satisfy for each respective app type:
 
-| Platform               | Source of app store version                                                  |
-| ---------------------- | ---------------------------------------------------------------------------- |
-| React Native (Android) | The `android.defaultConfig.versionName` property in your `build.gradle` file |
-| React Native (iOS)     | The `CFBundleShortVersionString` key in the `Info.plist` file                |
-| React Native (Windows) | The `<Identity Version>` key in the `Package.appxmanifest` file              |
+| Platform | Source of app store version                                                  |
+|----------| ---------------------------------------------------------------------------- |
+| Android  | The `android.defaultConfig.versionName` property in your `build.gradle` file |
+| iOS      | The `CFBundleShortVersionString` key in the `Info.plist` file                |
 
 _NOTE: If the app store version in the metadata files are missing a patch version, e.g. `2.0`, it will be treated as having a patch version of `0`, i.e. `2.0 -> 2.0.0`._
 
@@ -76,19 +78,19 @@ _NOTE: If the app store version in the metadata files are missing a patch versio
 
 This specifies which deployment you want to release the update to. This defaults to `Staging`, but when you're ready to deploy to `Production`, or one of your own custom deployments, just explicitly set this argument.
 
-_NOTE: The parameter can be set using either "--deploymentName" or "-d"._
+_NOTE: The parameter can be set using either `--deploymentName` or `-d`._
 
 ### Description parameter
 
 This provides an optional "change log" for the deployment. The value is simply round tripped to the client so that when the update is detected, your app can choose to display it to the end-user (e.g. via a "What's new?" dialog). This string accepts control characters such as `\n` and `\t` so that you can include whitespace formatting within your descriptions for improved readability.
 
-_NOTE: This parameter can be set using either "--description" or "-des"_
+_NOTE: This parameter can be set using either `--description` or `--des`_
 
 ### Disabled parameter
 
 This specifies whether an update should be downloadable by end users or not. If left unspecified, the update will not be disabled (i.e. users will download it the moment your app calls `sync`). This parameter can be valuable if you want to release an update that isn't immediately available, until you explicitly [patch it](#patching-releases) when you want end users to be able to download it (e.g. an announcement blog post went live).
 
-_NOTE: This parameter can be set using either "--disabled" or "-x"_
+_NOTE: This parameter can be set using either `--disabled` or `-x`_
 
 ### Mandatory parameter
 
@@ -114,7 +116,12 @@ _NOTE: This parameter can be set using either `--mandatory` or `-m`_
 
 ### No duplicate release error parameter
 
-This specifies that if the update is identical to the latest release on the deployment, the CLI should generate a warning instead of an error. This is useful for continuous integration scenarios where it is expected that small modifications may trigger releases where no production code has changed.
+This specifies that if the update is identical to the latest release on the deployment, the CLI should generate a warning instead of an error. 
+This is useful for continuous integration scenarios where it is expected that small modifications may trigger releases where no production code has changed.
+
+
+_NOTE: This parameter can be set using `--noDuplicateReleaseError`_
+
 
 ### Rollout parameter
 
@@ -192,7 +199,7 @@ This is the same parameter as the one described in the [above section](#app-name
 
 #### Platform parameter
 
-This specifies which platform the current update is targeting, and can be either `android`, `ios` or `windows` (case-insensitive). This value is only used to determine how to properly bundle your update contents and isn't actually sent to the server.
+This specifies which platform the current update is targeting, and can be either `android` or `ios` (case-insensitive). This value is only used to determine how to properly bundle your update contents and isn't actually sent to the server.
 
 #### Deployment name parameter
 
@@ -220,15 +227,15 @@ This is the same parameter as the one described in the [above section](#target-b
 
 #### Bundle name parameter
 
-This specifies the file name that should be used for the generated JS bundle. If left unspecified, the standard bundle name will be used for the specified platform: `main.jsbundle` (iOS), `index.android.bundle` (Android) and `index.windows.bundle` (Windows).
+This specifies the file name that should be used for the generated JS bundle. If left unspecified, the standard bundle name will be used for the specified platform: `main.jsbundle` (iOS), `index.android.bundle` (Android).
 
-_NOTE: This parameter can be set using either --bundleName or -b_
+_NOTE: This parameter can be set using either `--bundleName` or `-b`_
 
 #### Development parameter
 
 This specifies whether to generate a unminified, development JS bundle. If left unspecified, this defaults to `false` where warnings are disabled and the bundle is minified.
 
-_NOTE: This parameter can be set using either --development or --dev_
+_NOTE: This parameter can be set using either `--development` or `--dev`_
 
 #### Disabled parameter
 
@@ -236,9 +243,9 @@ This is the same parameter as the one described in the [above section](#disabled
 
 #### Entry file parameter
 
-This specifies the relative path to the app's root/entry JavaScript file. If left unspecified, this defaults to `index.ios.js` (for iOS), `index.android.js` (for Android) or `index.windows.bundle` (for Windows) if that file exists, or `index.js` otherwise.
+This specifies the relative path to the app's root/entry JavaScript file. If left unspecified, this defaults to `index.ios.js` (for iOS), `index.android.js` (for Android) if that file exists, or `index.js` otherwise.
 
-_NOTE: This parameter can be set using either --entryFile or -e_
+_NOTE: This parameter can be set using either `--entryFile` or `-e`_
 
 #### Gradle file parameter (Android only)
 
@@ -251,17 +258,23 @@ revopush release-react MyApp-Android android -p "./foo/bar/build.gradle"
 
 #### Plist file parameter (iOS only)
 
-This specifies the relative path to the `Info.plist` file that the CLI should use when attempting to auto-detect the target binary version for the release. This parameter is only meant for advanced scenarios, since the CLI will automatically be able to find your `Info.plist` file in "standard" React Native projects, and you can use the `--plistFilePrefix` parameter in order to support per-environment plist files (e.g. `STAGING-Info.plist`). However, if your plist is located in an arbitrary location, that the CLI can't discover, then using this parameter allows you to continue releasing CodePush updates, without needing to explicitly set the `--targetBinaryVersion` parameter.
+This specifies the relative path to the `Info.plist` file that the CLI should use when attempting to auto-detect the target binary version for the release. 
+This parameter is only meant for advanced scenarios, since the CLI will automatically be able to find your `Info.plist` file in "standard" React Native projects, and you can use the `--plistFilePrefix` parameter in order to support per-environment plist files (e.g. `STAGING-Info.plist`). 
+However, if your plist is located in an arbitrary location, that the CLI can't discover, then using this parameter allows you to continue releasing CodePush updates, without needing to explicitly set the `--targetBinaryVersion` parameter.
 
 ```shell
 revopush release-react MyApp-iOS ios -p "./foo/bar/MyFile.plist"
 ```
 
-_NOTE: This parameter can be set using either --plistFile or -p_
+_NOTE: This parameter can be set using either `--plistFile` or `-p`_
 
 #### Plist file prefix parameter (iOS only)
 
-This specifies the file name prefix of the `Info.plist` file that that CLI should use when attempting to auto-detect the target binary version for the release. This can be useful if you've created per-environment plist files (e.g. `DEV-Info.plist`, `STAGING-Info.plist`), and you want to be able to release CodePush updates without needing to explicitly set the `--targetBinaryVersion` parameter. By specifying a `--plistFilePrefx`, the CLI will look for a file named `<prefix>-Info.plist`, instead of simply `Info.plist` (which is the default behavior), in the following locations: `./ios` and `./ios/<appName>`. If your plist file isn't located in either of those directories (e.g. your app is a native iOS app with embedded RN views), or uses an entirely different file naming convention, then consider using the `--plistFile` parameter.
+This specifies the file name prefix of the `Info.plist` file that CLI should use when attempting to auto-detect the target binary version for the release. This can be useful if you've created per-environment plist files (e.g. `DEV-Info.plist`, `STAGING-Info.plist`), 
+and you want to be able to release CodePush updates without needing to explicitly set the `--targetBinaryVersion` parameter. By specifying a `--plistFilePrefx`, the CLI will look for a file named `<prefix>-Info.plist`, instead of simply `Info.plist` (which is the default behavior),
+in the following locations: `./ios` and `./ios/<appName>`.
+If your plist file isn't located in either of those directories (e.g. your app is a native iOS app with embedded RN views), 
+or uses an entirely different file naming convention, then consider using the `--plistFile` parameter.
 
 ```shell
 # Auto-detect the target binary version of this release by looking up the
@@ -273,58 +286,79 @@ revopush release-react MyApp-iOS ios --pre "STAGING"
 revopush release-react MyApp-iOS ios --pre "DEV-"
 ```
 
-_NOTE: This parameter can be set using either --plistFilePrefix or --pre_
+_NOTE: This parameter can be set using either `--plistFilePrefix` or `--pre`_
 
 #### Sourcemap output parameter
 
 This specifies the relative path to where the generated JS bundle's sourcemap file should be written. If left unspecified, sourcemaps will not be generated.
 
-_NOTE: This parameter can be set using either --sourcemapOutput or -s_
+_NOTE: This parameter can be set using either `--sourcemapOutput` or `-s`_
 
 #### Output directory parameter
 
-This specifies the relative path to where the assets, JS bundle and sourcemap files should be written. If left unspecified, the assets, JS bundle and sourcemap will be copied to the `/tmp/CodePush` folder.
+This specifies the relative path to where the assets, JS bundle and sourcemap files should be written. 
+If left unspecified, the assets, JS bundle and sourcemap will be copied to the `/tmp/CodePush` folder.
 
-_NOTE: This parameter can be set using either --outputDir or -o_
+_NOTE: This parameter can be set using either `--outputDir` or `-o`_
 
 #### Use Hermes parameter
 
 This parameter enforces the use of the Hermes compiler. If not specified, the automatic checks will be performed, inspecting the `build.gradle` and `Podfile` for the Hermes flag.
 
-_NOTE: This parameter can be set using either --hermesEnabled or -h_
+_NOTE: This parameter can be set using either `--hermesEnabled` or `-h`_
 
 #### Podfile parameter (iOS only)
 
 The Podfile path will be used for Hermes automatic check. Not used if `--useHermes` is specified.
 
-_NOTE: This parameter can be set using either --podfile or -pod_
+_NOTE: This parameter can be set using either `--podfile` or `-pod`_
 
 #### Extra hermes flags parameter
 
 Hermes flags which will be passed to Hermes compiler.
 
-_NOTE: This parameter can be set using either --extraHermesFlags or -hf_
+_NOTE: This parameter can be set using either `--extraHermesFlags` or `-hf`_
 
 #### Private key path parameter
 
 Private key path which is used for code signing.
 
-_NOTE: This parameter can be set using either --privateKeyPath or -k_
+_NOTE: This parameter can be set using either `--privateKeyPath` or `-k`_
 
 #### Xcode project file parameter
 
 Path to the Xcode project or project.pbxproj file.
 
-_NOTE: This parameter can be set using either --xcodeProjectFile or -xp_
+_NOTE: This parameter can be set using either `--xcodeProjectFile` or `-xp`_
 
 #### Xcode target name parameter
 
 Name of target (PBXNativeTarget) which specifies the binary version you want to target this release at (iOS only).
 
-_NOTE: This parameter can be set using either --xcodeTargetName or -xt_
+_NOTE: This parameter can be set using either `--xcodeTargetName` or `-xt`_
 
 #### Build configuration name parameter
 
 Name of build configuration which specifies the binary version you want to target this release at. For example, 'Debug' or 'Release' (iOS only).
 
-_NOTE: This parameter can be set using either --buildConfigurationName or -c_
+_NOTE: This parameter can be set using either `--buildConfigurationName` or `-c`_
+
+#### Extra bundler option parameter
+
+Option that gets passed to react-native bundler. It can be specified multiple times.
+
+_NOTE: This parameter can be set using either `--extraBundlerOption` or `--eo`_
+
+:::tip
+_NOTE: When you make changes to your React Native code, the bundler might use cached versions of your files. 
+As result, your changes may not be reflected in the update you release and message like this may appear:_
+```shell
+[Error]  The uploaded package was not released because it is identical to the contents of the specified deployment's current release.
+```
+
+_Using the `--no-cache` bundler option ensures that your changes are picked up._
+
+```shell
+revopush release-react ios_app ios --extraBundlerOption=--reset-cache
+```
+:::

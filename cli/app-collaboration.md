@@ -21,10 +21,10 @@ Once added, all collaborators will immediately have the following permissions wi
 Inversely, that means that an app collaborator cannot do any of the following:
 
 1. Rename or delete the app
-1. Transfer ownership of the app
-1. Create, rename or delete new deployments within the app
-1. Clear a deployment's release history
-1. Add or remove collaborators from the app (\*)
+2. Transfer ownership of the app
+3. Create, rename or delete new deployments within the app
+4. Clear a deployment's release history
+5. Add or remove collaborators from the app (\*)
 
 ::: warning
 _NOTE: A developer can remove him/herself as a collaborator from an app that was shared with them._
