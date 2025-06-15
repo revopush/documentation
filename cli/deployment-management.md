@@ -20,6 +20,10 @@ If you want to re-use an existing deployment key, you can do this with:
 revopush deployment add <appName> <deploymentName> -k <existing-deployment-key>
 ```
 
+::: warning
+_NOTE: The deployment key must be 10–100 characters long and can only contain letters, numbers, hyphens (-), and underscores (\_\)._
+:::
+
 Just like with apps, you can remove and rename deployments as well, using the following commands respectively:
 
 ```shell
