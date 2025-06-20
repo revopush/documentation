@@ -1,4 +1,4 @@
-# Revopush CLI guide
+# Revopush CLI
 
 ```shell
 npm install -g @revopush/code-push-cli
