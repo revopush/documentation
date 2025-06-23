@@ -29,7 +29,15 @@ export default defineConfig({
                 collapsed: true,
                 items: [
                     {text: 'What is Revopush?', link: '/'},
-                    {text: 'Getting started', link: '/intro/getting-started'}
+                    {text: 'Getting started', link: '/intro/getting-started'},
+                ]
+            },
+            {
+                text: 'Troubleshooting',
+                collapsed: true,
+                items: [
+                    {text: 'Common problems', link: '/troubleshooting/troubleshooting'},
+                    {text: 'Application template', link: '/troubleshooting/application-template'},
                 ]
             },
             {

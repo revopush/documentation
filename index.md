@@ -9,7 +9,7 @@ We offer mobile developers a seamless migration from AppCenter, continuous suppo
 - Supports the latest React Native versions and the New Architecture
 - Multi-cloud architecture with a CDN for optimal delivery speed ([read our article](https://revopush.org/revopush-speeds-up-react-native-ota))
 - A modern administration panel with team collaboration capabilities
-- Affordable [pricing](https://revopush.org/pricing) starting at just **$15**
+- Affordable [ota pricing](https://revopush.org/pricing) starting at just **$15**
 - Seamless integration with popular CI/CD platforms
 - Enhanced security and advanced analytics
 

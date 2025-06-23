@@ -36,6 +36,65 @@ First, you need to decide what client SDK to use. We support two options:
 | <v0.76                | Use old Microsoft [CodePush client](https://github.com/microsoft/react-native-code-push) |
 | v0.76, v0.77, 0.78    | Use [Revopush SDK](https://github.com/revopush/react-native-code-push) (Support both New and Old Architectures)                                                                             |
 
+#### For this guide we will use Revopush SDK
+
+Install Revopush client:
+
+```bash
+npm install --save @revopush/react-native-code-push
+```
+
+#### Setup iOS
+
+Go to the  `ios/[ProjectName]/AppDelegate.swift` and replace:
+
+```swift
+override func bundleURL() -> URL? {
+#if DEBUG
+    RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+#else
+    Bundle.main.url(forResource: "main", withExtension: "jsbundle") // [!code --]
+    CodePush.bundleURL() // [!code ++]
+#endif
+}
+```
+
+#### Setup Android
+
+Go to the  `android/app/build.gradle` and add:
+
+```kotlin
+apply plugin: "com.android.application"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "com.facebook.react"
+
+apply from: "../../node_modules/@revopush/react-native-code-push/android/codepush.gradle" // [!code ++]
+```
+
+Then apply changes to MainApplication.kt in the `android/app/src/main/../MainApplication.kt`
+
+```kotlin
+import com.facebook.react.soloader.OpenSourceMergedSoMapping
+import com.facebook.soloader.SoLoader
+
+import com.microsoft.codepush.react.CodePush // [!code ++]
+
+class MainApplication : Application(), ReactApplication {
+
+  override val reactNativeHost: ReactNativeHost =
+      object : DefaultReactNativeHost(this) {
+        override fun getPackages(): List<ReactPackage> =
+            PackageList(this).packages.apply {}
+
+        override fun getJSBundleFile(): String { // [!code ++]
+            return CodePush.getJSBundleFile()// [!code ++]
+        }// [!code ++]
+
+        override fun getJSMainModuleName(): String = "index"
+      }
+}
+```
+
 After you configure your React Native application go to app settings to get Deployment keys:
 
 ![Application deployments](/images/intro/deployments-list.png)
@@ -62,6 +121,20 @@ Add the `CodePushServerUrl` and `CodePushDeploymentKey` to the file `android/app
 </resources>
 
 ```
+
+## JS configuration
+
+Configure the SDK in the JavaScript layer of your app (minimal setup):
+
+```js
+import codePush from "@revopush/react-native-code-push";
+
+class MyApp extends Component {}
+
+MyApp = codePush(MyApp);
+```
+
+More details: [JS SDK API](/sdk/api-js)
 
 ## Configure CLI
 
