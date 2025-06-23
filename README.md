@@ -15,3 +15,5 @@ npm run docs:dev
 ```shell
 npm run docs:build
 ```
+
+jsut testing build on node 22
