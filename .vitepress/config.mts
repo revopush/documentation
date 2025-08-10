@@ -41,6 +41,13 @@ export default defineConfig({
                 ]
             },
             {
+                text: 'Performance',
+                collapsed: true,
+                items: [
+                    {text: 'Optimize assets for OTA', link: '/performance/react-native-ota-assets-optimization'},
+                ]
+            },
+            {
                 text: 'Revopush CLI',
                 collapsed: true,
                 items: [
