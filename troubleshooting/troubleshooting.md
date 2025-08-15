@@ -54,11 +54,13 @@ Check if source maps or debug symbols are included. Exclude sourcemaps in produc
 
 ## Sentry integration
 
-You can use [Sentry CodePush plugin](https://docs.sentry.io/platforms/react-native/sourcemaps/uploading/codepush/)
+Read full [Sentry integration guide](/cicd/sentry)
 
-```shell
-npx sentry-cli releases files <release> upload-sourcemaps ./build --rewrite
-```
+Check your release script for this issue:
+
+::: warning
+`--sourcemapOutput` must not match `--outputDir` to prevent .map files from being included in your bundle and delivered to clients.
+:::
 
 
 

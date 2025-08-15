@@ -91,6 +91,7 @@ export default defineConfig({
                     {text: 'Github Actions', link: '/cicd/github-action'},
                     {text: 'Bitrise', link: '/cicd/bitrise'},
                     {text: 'CircleCI', link: '/cicd/circleci'},
+                    {text: 'Sentry', link: '/cicd/sentry'},
                 ]
             }
         ],
