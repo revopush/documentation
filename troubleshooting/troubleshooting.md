@@ -54,7 +54,7 @@ Check if source maps or debug symbols are included. Exclude sourcemaps in produc
 
 ## Sentry integration
 
-Read full guide about [Sentry integration](/cicd/sentry)
+Read full [Sentry integration guide](/cicd/sentry)
 
 Check your release script for this issue:
 
