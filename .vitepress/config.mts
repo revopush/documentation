@@ -5,7 +5,19 @@ export default defineConfig({
     title: "Revopush",
     description: "Revopush the Ultimate Alternative to CodePush",
     head: [
-        ['link', {rel: 'icon', type: 'image/x-icon', href: '/favicon.png'}],
+        ['link', {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
+        [
+            'script',
+            {
+                async: true,
+                src: 'https://www.googletagmanager.com/gtag/js?id=G-Z7EKFSKXL8',
+            },
+        ],
+        [
+            'script',
+            {},
+            "window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', 'G-Z7EKFSKXL8');",
+        ],
     ],
     lastUpdated: true,
     cleanUrls: true,
