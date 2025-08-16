@@ -61,7 +61,9 @@ Modern versions of React Native use [HermesJS](https://reactnative.dev/docs/herm
 
 #### Avoid including source files
 
-Avoid including .map files in your release bundles. They significantly increase bundle size and may create security risks by exposing your source code (unlike Hermes bytecode, which can be decompiled but is far harder to reconstruct into functional JavaScript).
+Avoid including `.map` files in your release bundles. They significantly increase bundle size and may create security risks by exposing your source code (unlike Hermes bytecode, which can be decompiled but is far harder to reconstruct into functional JavaScript).
+
+Usually, `.map` files appear when integrating with Sentry. If you are using Sentry, please [read the instructions](/cicd/sentry) on how to correctly generate sourcemaps and prevent them from being included in the OTA bundle.
 
 #### Analyze bundle contents
 
