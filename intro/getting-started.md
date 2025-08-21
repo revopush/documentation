@@ -20,7 +20,6 @@ First, you need to create an account at the following service: https://app.revop
 
 ![Application list](/images/intro/add-new-app-list.png)
 
-
 ## Setup mobile client SDK
 
 First, you need to decide what client SDK to use. We support two options:
@@ -31,10 +30,10 @@ First, you need to decide what client SDK to use. We support two options:
 - If you need React Native **>=0.76**, or you need support for New Architecture, you need to use Revopush client SDK. 
 [Read here](https://github.com/revopush/react-native-code-push) how to configure Revopush SDK.
 
-| React Native version(s) | Supporting CodePush version(s)                                                           |             
-|-----------------------|------------------------------------------------------------------------------------------|
-| <v0.76                | Use old Microsoft [CodePush client](https://github.com/microsoft/react-native-code-push) |
-| v0.76, v0.77, 0.78    | Use [Revopush SDK](https://github.com/revopush/react-native-code-push) (Support both New and Old Architectures)                                                                             |
+| React Native version(s)            | Supporting CodePush version(s)                                                           |             
+|------------------------------------|------------------------------------------------------------------------------------------|
+| <v0.76                             | Use old Microsoft [CodePush client](https://github.com/microsoft/react-native-code-push) |
+| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | Use [Revopush SDK](https://github.com/revopush/react-native-code-push) (Support both New and Old Architectures)                                                                             |
 
 #### For this guide we will use Revopush SDK
 
@@ -177,6 +176,14 @@ revopush release-react <APPLICATION_NAME> android -d <DEPLOYMENT_NAME>
 
 Read more about Releases in [Releasing updates guide](/cli/releasing-updates)
 
-## App Center Migration
+## Run application in release mode
 
-If you migrate your applications from App Center follow our [step-by-step guide](/migration/guide).
+If you want to test integration locally run the app in Release mode on an emulator or real device:
+
+```shell
+npx react-native run-ios --mode Release --no-packager
+npx react-native run-android --mode Release --no-packager
+```
+
+This ensures the app doesn't rely on the local Metro bundler and uses the deployed update instead.
+

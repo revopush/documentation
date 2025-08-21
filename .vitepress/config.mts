@@ -42,6 +42,7 @@ export default defineConfig({
                 items: [
                     {text: 'What is Revopush?', link: '/'},
                     {text: 'Getting started', link: '/intro/getting-started'},
+                    {text: 'Expo integration', link: '/intro/expo'},
                 ]
             },
             {
