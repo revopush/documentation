@@ -49,7 +49,7 @@ We try our best to maintain backwards compatibility of our plugin with previous 
 | React Native version(s) | Supporting CodePush version(s)                                                           |             
 |-----------------------|------------------------------------------------------------------------------------------|
 | <v0.76                | Use old Microsoft [CodePush client](https://github.com/microsoft/react-native-code-push) |
-| v0.76, v0.77, 0.78    | Use [Revopush SDK](https://github.com/revopush/react-native-code-push) (Support both New and Old Architectures)                                                                             |
+| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81    | Use [Revopush SDK](https://github.com/revopush/react-native-code-push) (Support both New and Old Architectures)                                                                             |
 
 
 We work hard to respond to new RN releases, but they do occasionally break us. We will update this chart with each RN release, so that users can check to see what our "official" support is.

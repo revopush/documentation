@@ -7,6 +7,7 @@ We offer mobile developers a seamless migration from AppCenter, continuous suppo
 
 - Fully compatible with the existing CodePush SDK
 - Supports the latest React Native versions and the New Architecture
+- Integration with Expo SDK projects
 - Multi-cloud architecture with a CDN for optimal delivery speed ([read our article](https://revopush.org/revopush-speeds-up-react-native-ota))
 - A modern administration panel with team collaboration capabilities
 - Affordable [ota pricing](https://revopush.org/pricing) starting at just **$15**
