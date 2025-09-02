@@ -46,7 +46,7 @@ Install the [jq](https://jqlang.org/) utility. For example, `apt-get install jq`
 rm -rf ./build ./sourcemaps
 mkdir -p ./sourcemap
 
-CODEPUSH_COMMAND="code-push-standalone release-react \
+CODEPUSH_COMMAND="revopush release-react \
   \"${APP_NAME}\" \
   \"${PLATFORM}\" \
   --deploymentName \"${DEPLOYMENT_NAME}\" \
