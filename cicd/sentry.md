@@ -85,7 +85,7 @@ For **Android** it is important to use `--outputDir` with root `CodePush` to sup
 rm -rf ./build ./sourcemaps
 mkdir -p ./sourcemap
 
-CODEPUSH_COMMAND="code-push-standalone release-react \
+CODEPUSH_COMMAND="revopush release-react \
   \"${APP_NAME}\" \
   \"${PLATFORM}\" \
   --deploymentName \"${DEPLOYMENT_NAME}\" \
