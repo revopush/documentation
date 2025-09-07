@@ -24,11 +24,11 @@ First, you need to create an account at the following service: https://app.revop
 
 First, you need to decide what client SDK to use. We support two options:
 
-- If you use React Native **<0.76** and old architecture, you should stay on a Microsoft CodePush client SDK. 
+- For React Native **<0.76** and old architecture, you should stay on a Microsoft CodePush client SDK. 
 [Read here](https://github.com/microsoft/react-native-code-push) how to configure Microsoft CodePush SDK.
 
-- If you need React Native **>=0.76**, or you need support for New Architecture, you need to use Revopush client SDK. 
-[Read here](https://github.com/revopush/react-native-code-push) how to configure Revopush SDK.
+- For React Native **>=0.76**, or you need support for New Architecture, you should use Revopush client SDK.
+- For Expo SDK 52+ follow [Expo configuration instructions](/intro/expo)
 
 | React Native version(s)            | Supporting CodePush version(s)                                                           |             
 |------------------------------------|------------------------------------------------------------------------------------------|

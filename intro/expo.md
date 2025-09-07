@@ -176,3 +176,25 @@ npx expo run:ios --configuration Release
 ::: warning
 Every time you change Revopush settings inside app config you need to run `npx expo prebuild --clean` to apply these changes on native side
 :::
+
+## Troubleshooting
+
+If you see this message in logs:
+
+> The error message: Update is invalid - A JS bundle file named "null" could not be 
+>  found within the downloaded contents. Please check that you are releasing your     
+> CodePush updates using the exact same JS bundle file name that was shipped with    
+> your app's binary.
+
+You will probably need to remove `expo-updates` package.
+
+```bash
+npm uninstall expo-updates
+```
+
+Then remove `expo-updates` specific app config properties and run `prebuild` to uninstall native `expo-updates` dependencies
+
+```bash
+npx expo prebuild --clean
+```
+
