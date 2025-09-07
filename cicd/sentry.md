@@ -63,7 +63,7 @@ For **iOS**:
 rm -rf ./build ./sourcemaps
 mkdir -p ./sourcemap
 
-CODEPUSH_COMMAND="code-push-standalone release-react \
+CODEPUSH_COMMAND="revopush release-react \
   \"${APP_NAME}\" \
   \"${PLATFORM}\" \
   --deploymentName \"${DEPLOYMENT_NAME}\" \
