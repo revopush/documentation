@@ -27,6 +27,8 @@ Depending on the JS engine you use, run the following commands.
 
 #### JSC (JavaScriptCore)
 
+For **iOS**:
+
 ```bash
 revopush release-react \
   "${APP_NAME}" \
@@ -36,11 +38,26 @@ revopush release-react \
   --sourcemapOutput ./sourcemap
 ```
 
+::: warning
+For **Android** it is important to use `--outputDir` with root `CodePush` to support JWT signing
+:::
+
+```bash
+revopush release-react \
+  "${APP_NAME}" \
+  "${PLATFORM}" \
+  --deploymentName "${DEPLOYMENT_NAME}" \
+  --outputDir ./build/CodePush \
+  --sourcemapOutput ./sourcemap
+```
+
 In case of error try to create `sourcemap` folder manually in the root of your project. 
 
 #### Hermes
 
 Install the [jq](https://jqlang.org/) utility. For example, `apt-get install jq` on Ubuntu, or `brew install jq` on macOS with Homebrew.
+
+For **iOS**:
 
 ```bash
 rm -rf ./build ./sourcemaps
@@ -52,6 +69,28 @@ CODEPUSH_COMMAND="code-push-standalone release-react \
   --deploymentName \"${DEPLOYMENT_NAME}\" \
   --useHermes \
   --outputDir ./build \
+  --sourcemapOutput ./sourcemap"
+
+DEBUG_ID=$(eval "$CODEPUSH_COMMAND" | tee /dev/tty | grep -o 'Bundle Debug ID: [0-9a-f-]*' | sed 's/Bundle Debug ID: //')
+MAP_FILE=$(find ./sourcemap -name "*.map" -type f)
+
+jq -c ". + {\"debug_id\": \"${DEBUG_ID}\"}" "${MAP_FILE}" > "${MAP_FILE}.tmp"
+mv "${MAP_FILE}.tmp" "${MAP_FILE}"
+```
+::: warning
+For **Android** it is important to use `--outputDir` with root `CodePush` to support JWT signing
+:::
+
+```bash
+rm -rf ./build ./sourcemaps
+mkdir -p ./sourcemap
+
+CODEPUSH_COMMAND="code-push-standalone release-react \
+  \"${APP_NAME}\" \
+  \"${PLATFORM}\" \
+  --deploymentName \"${DEPLOYMENT_NAME}\" \
+  --useHermes \
+  --outputDir ./build/CodePush \
   --sourcemapOutput ./sourcemap"
 
 DEBUG_ID=$(eval "$CODEPUSH_COMMAND" | tee /dev/tty | grep -o 'Bundle Debug ID: [0-9a-f-]*' | sed 's/Bundle Debug ID: //')
