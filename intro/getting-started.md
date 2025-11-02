@@ -48,6 +48,8 @@ npm install --save @revopush/react-native-code-push
 Go to the  `ios/[ProjectName]/AppDelegate.swift` and replace:
 
 ```swift
+import CodePush // [!code ++]
+
 override func bundleURL() -> URL? {
 #if DEBUG
     RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
@@ -55,6 +57,22 @@ override func bundleURL() -> URL? {
     Bundle.main.url(forResource: "main", withExtension: "jsbundle") // [!code --]
     CodePush.bundleURL() // [!code ++]
 #endif
+}
+```
+
+Go to the  `ios/[ProjectName]/AppDelegate.mm` and replace:
+
+```Obj-c
+#import <CodePush/CodePush.h> // [!code ++]
+
+- (NSURL *)bundleURL
+{
+    #if DEBUG
+      return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
+    #else
+      return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"]; // [!code --]
+      return [CodePush bundleURL];  // [!code ++]
+    #endif
 }
 ```
 
