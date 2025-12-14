@@ -1,6 +1,6 @@
-# Revopush User guide
+# Revopush 2.0 User guide
 
-This 5-minute guide will help you to set up your first Revopush integration
+This 5-minute guide will help you to set up your first Revopush 2.0 integration
 
 ## Create an account
 
@@ -22,25 +22,18 @@ First, you need to create an account at the following service: https://app.revop
 
 ## Setup mobile client SDK
 
-First, you need to decide what client SDK to use. We support two options:
-
-- For React Native **<0.76** and old architecture, you should stay on a Microsoft CodePush client SDK. 
-[Read here](https://github.com/microsoft/react-native-code-push) how to configure Microsoft CodePush SDK.
-
 - For React Native **>=0.76**, or you need support for New Architecture, you should use Revopush client SDK.
-- For Expo SDK 52+ follow [Expo configuration instructions](/intro/expo)
 
 | React Native version(s)            | Supporting CodePush version(s)                                                           |             
 |------------------------------------|------------------------------------------------------------------------------------------|
-| <v0.76                             | Use old Microsoft [CodePush client](https://github.com/microsoft/react-native-code-push) |
-| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | Use [Revopush SDK](https://github.com/revopush/react-native-code-push) (Support both New and Old Architectures)                                                                             |
+| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | @revopush/react-native-code-push@2.5.0-rc.1                                                                           |
 
 #### For this guide we will use Revopush SDK
 
 Install Revopush client:
 
 ```bash
-npm install --save @revopush/react-native-code-push
+npm install --save @revopush/react-native-code-push@2.5.0-rc.1
 ```
 
 #### Setup iOS
@@ -75,6 +68,15 @@ Go to the  `ios/[ProjectName]/AppDelegate.mm` and replace:
     #endif
 }
 ```
+
+::: warning
+Put this line to `ios/.xcode.env.local` and `ios/.xcode.env`
+
+```shell
+export SOURCEMAP_FILE="$DERIVED_FILE_DIR/main.jsbundle.map"
+```
+
+:::
 
 #### Setup Android
 
@@ -118,7 +120,7 @@ After you configure your React Native application go to app settings to get Depl
 
 ### Setup deployment key for iOS
 
-Add the `CodePushServerURL` and `CodePushDeploymentKey` to the file `ios/[ProjectName]/Info.plist` 
+Add the `CodePushServerURL` and `CodePushDeploymentKey` to the file `ios/[ProjectName]/Info.plist`
 
 ```xml
 <key>CodePushServerURL</key>
@@ -157,8 +159,16 @@ More details: [JS SDK API](/sdk/api-js)
 
 After registration, install the Revopush CLI.
 
+Uninstall existing version of Revopush CLI:
+
 ```shell
-npm install -g @revopush/code-push-cli
+npm uninstall -g @revopush/code-push-cli
+```
+
+Install RC version:
+
+```shell
+npm i -g @revopush/code-push-cli@0.0.8-rc.0
 ```
 
 Login to Revopush CLI using the following command:
@@ -182,7 +192,36 @@ Read more about [Revopush CLI](/cli/getting-started)
 
 ## Make a release
 
+To use **Diff updates** together with Revopush SDK 2.0, you must first create a base release for the specific binary version of the app you are targeting.
+
+#### What is a base release?
+
+A base release is a snapshot of your assets and JavaScript bundle exactly as they were shipped to the app stores together with your IPA/APK.
+
+This snapshot is then used as a baseline to generate diffs only for assets and the JS bundle that already exist in the store build and on users’ devices.
+
+As a result, update payload sizes are reduced by 10–20×, and update delivery to users becomes significantly faster.
+
+To create a base release, run the command on the exact same build version that was used for the store release. Ideally, this command should be executed as part of the same release pipeline used to build the app for the stores, in order to avoid even minor library version differences.
+
 In the root folder of a React Native project, run these commands
+
+```shell
+revopush release-react <APPLICATION_NAME> ios -d <DEPLOYMENT_NAME> -i
+```
+
+```shell
+revopush release-react <APPLICATION_NAME> android -d <DEPLOYMENT_NAME> -i
+```
+
+Addional flag for initial release:
+
+```shell
+-i, --initial   Specifies whether release is initial (base) for given targetBinaryVersion.  [boolean] [default: false]
+```
+
+
+#### Regular release
 
 ```shell
 revopush release-react <APPLICATION_NAME> ios -d <DEPLOYMENT_NAME>

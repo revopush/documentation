@@ -46,6 +46,28 @@ Go to app settings to get Deployment keys:
 
 Extend Plugin section in your Expo config with:
 
+**App.json**
+
+```json
+{
+  "plugins": [
+    ["@revopush/expo-code-push-plugin", {   // [!code ++]
+              "ios": {  // [!code ++]
+                "CodePushDeploymentKey": "YOUR_DEPLOYMENT_KEY",   // [!code ++]
+                "CodePushServerUrl": "https://api.revopush.org"   // [!code ++]
+              }, // [!code ++]
+              "android": { // [!code ++]
+                "CodePushDeploymentKey": "YOUR_DEPLOYMENT_KEY", // [!code ++]
+                "CodePushServerUrl": "https://api.revopush.org" // [!code ++]
+              } // [!code ++]
+          } // [!code ++]
+        ] // [!code ++]
+    ]
+}
+```
+
+**app.config.js**
+
 ```typescript
 module.exports = ({ config }: { config: ExpoConfig }) => ({
     ...config,
