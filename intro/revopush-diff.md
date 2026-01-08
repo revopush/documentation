@@ -33,7 +33,7 @@ First, you need to create an account at the following service: https://app.revop
 Install Revopush client:
 
 ```bash
-npm install --save @revopush/react-native-code-push@2.5.0-rc.1
+npm install --save @revopush/react-native-code-push@2.5.0-rc.2
 ```
 
 #### Setup iOS
