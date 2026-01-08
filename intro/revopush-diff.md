@@ -24,9 +24,9 @@ First, you need to create an account at the following service: https://app.revop
 
 - For React Native **>=0.76**, or you need support for New Architecture, you should use Revopush client SDK.
 
-| React Native version(s)            | Supporting CodePush version(s)                                                           |             
-|------------------------------------|------------------------------------------------------------------------------------------|
-| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | @revopush/react-native-code-push@2.5.0-rc.1                                                                           |
+| React Native version(s)            | Supporting CodePush version(s)              |             
+|------------------------------------|---------------------------------------------|
+| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | @revopush/react-native-code-push@2.5.0-rc.2 |
 
 #### For this guide we will use Revopush SDK
 
@@ -168,7 +168,7 @@ npm uninstall -g @revopush/code-push-cli
 Install RC version:
 
 ```shell
-npm i -g @revopush/code-push-cli@0.0.8-rc.0
+npm i -g @revopush/code-push-cli@0.0.8-rc.2
 ```
 
 Login to Revopush CLI using the following command:
@@ -202,24 +202,27 @@ This snapshot is then used as a baseline to generate diffs only for assets and t
 
 As a result, update payload sizes are reduced by 10–20×, and update delivery to users becomes significantly faster.
 
-To create a base release, run the command on the exact same build version that was used for the store release. Ideally, this command should be executed as part of the same release pipeline used to build the app for the stores, in order to avoid even minor library version differences.
-
-In the root folder of a React Native project, run these commands
+To create a base release, you first need to build release APK/IPA files for the target platform and then provide these files as CLI parameters to create the base release.
 
 ```shell
-revopush release-react <APPLICATION_NAME> ios -d <DEPLOYMENT_NAME> -i
+revopush release-native <APPLICATION_NAME> ios ./path_to_ipa/app.ipa
 ```
 
 ```shell
-revopush release-react <APPLICATION_NAME> android -d <DEPLOYMENT_NAME> -i
+revopush release-react <APPLICATION_NAME> android ./path_to_ipa/app.apk
 ```
 
-Addional flag for initial release:
+Full command specification:
 
 ```shell
--i, --initial   Specifies whether release is initial (base) for given targetBinaryVersion.  [boolean] [default: false]
-```
+revopush release-native <appName> <platform> <targetBinary> [options]
 
+Options:
+  --help                     Show help  [boolean]
+  -d, --deploymentName       Deployment to release the update to  [string] [default: "Staging"]
+  -t, --targetBinaryVersion  Semver expression that specifies the binary app version(s) this release is targeting (e.g. 1.1.0, ~1.2.3).  [string] [default: null]
+  -v, --version              Show version number  [boolean]
+```
 
 #### Regular release
 
