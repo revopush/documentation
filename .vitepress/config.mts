@@ -46,6 +46,15 @@ export default defineConfig({
                 ]
             },
             {
+                text: 'Revopush 2.0',
+                collapsed: true,
+                items: [
+                    {text: 'What is Revopush 2.0?', link: '/revopush20/intro'},
+                    {text: 'Getting started', link: '/revopush20/getting-started'},
+                    {text: 'Migrate from Revopush 1.x', link: '/revopush20/migration'},
+                ]
+            },
+            {
                 text: 'Troubleshooting',
                 collapsed: true,
                 items: [
