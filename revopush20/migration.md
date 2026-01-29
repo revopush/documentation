@@ -5,7 +5,7 @@ please refer user [guide](/revopush20/getting-started).
 
 ## Configure CLI
 
-To get all the benefits of Revopush 2.0 you need to use the latest version of CLI (`0.0.8` and above). If you had one installed you can upgrade it
+To get all the benefits of Revopush 2.0 you need to use the latest version of CLI (`0.0.9` and above). If you had one installed you can upgrade it
 
 ```shell
 npm upgrade -g @revopush/code-push-cli
@@ -13,13 +13,13 @@ npm upgrade -g @revopush/code-push-cli
 
 or in case of CI/CD you need to install it 
 ```shell
-npm install -g @revopush/code-push-cli@0.0.8
+npm install -g @revopush/code-push-cli@0.0.9
 ```
 
-Ensure `revopush -v` is `0.0.8` and above
+Ensure `revopush -v` is `0.0.9` and above
 ```shell
 revopush -v
-0.0.8
+0.0.9
 ```
 
 ## Configure Revopush SDK

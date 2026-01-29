@@ -169,7 +169,7 @@ npm uninstall -g @revopush/code-push-cli
 Install Revopush CLI version:
 
 ```shell
-npm i -g @revopush/code-push-cli@0.0.8
+npm i -g @revopush/code-push-cli@0.0.9
 ```
 
 Login to Revopush CLI using the following command:
