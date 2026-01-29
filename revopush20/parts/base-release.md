@@ -17,11 +17,11 @@ revopush release-native <APPLICATION_NAME> ios ./path_to_ipa/app.ipa
 ```
 
 ```shell
-revopush release-react <APPLICATION_NAME> android ./path_to_ipa/app.apk
+revopush release-react <APPLICATION_NAME> android ./path_to_apk/app.apk
 ```
 
 ```shell
-revopush release-react <APPLICATION_NAME> android ./path_to_ipa/app.aab
+revopush release-react <APPLICATION_NAME> android ./path_to_aab/app.aab
 ```
 
 Full command specification:
