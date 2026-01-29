@@ -20,6 +20,10 @@ revopush release-native <APPLICATION_NAME> ios ./path_to_ipa/app.ipa
 revopush release-react <APPLICATION_NAME> android ./path_to_ipa/app.apk
 ```
 
+```shell
+revopush release-react <APPLICATION_NAME> android ./path_to_ipa/app.aab
+```
+
 Full command specification:
 
 ```shell
