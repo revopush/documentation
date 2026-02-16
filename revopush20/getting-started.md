@@ -27,14 +27,14 @@ First, you need to create an account at the following service: https://app.revop
 
 | React Native version(s)            | Supporting CodePush version(s)              |             
 |------------------------------------|---------------------------------------------|
-| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | @revopush/react-native-code-push@2.5.0-rc.4 |
+| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | @revopush/react-native-code-push@2.5.0-rc.5 |
 
 #### For this guide we will use Revopush SDK
 
 Install Revopush client:
 
 ```bash
-npm install --save @revopush/react-native-code-push@2.5.0-rc.4
+npm install --save @revopush/react-native-code-push@2.5.0-rc.5
 ```
 
 #### Setup iOS
@@ -89,18 +89,6 @@ apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
 apply from: "../../node_modules/@revopush/react-native-code-push/android/codepush.gradle" // [!code ++]
-```
-
-Disable PNG crunching for release builds in the same file:
-```groovy
-android {
-    buildTypes {
-        release {
-            ...
-            crunchPngs false // [!code ++]
-        }
-    }
-}
 ```
 
 ```kotlin
