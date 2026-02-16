@@ -23,24 +23,10 @@ revopush -v
 ```
 
 ## Configure Revopush SDK
-Your app needs to use Revopush SDK `2.5.0-rc.4` and above. To update version of Revopush SDK in the root folder of the app execute
+Your app needs to use Revopush SDK `2.5.0-rc.5` and above. To update version of Revopush SDK in the root folder of the app execute
 
 ```shell
-npm install @revopush/react-native-code-push@2.5.0-rc.4
-```
-
-## Adjust Android build configuration
-
-Disable PNG crunching for release builds in `android/app/build.gradle`:
-```groovy
-android {
-    buildTypes {
-        release {
-            ...
-            crunchPngs false // [!code ++]
-        }
-    }
-}
+npm install @revopush/react-native-code-push@2.5.0-rc.5
 ```
 
 <!--@include: ./parts/base-release.md-->
