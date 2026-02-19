@@ -30,10 +30,10 @@ First, you need to decide what client SDK to use. We support two options:
 - For React Native **>=0.76**, or you need support for New Architecture, you should use Revopush client SDK.
 - For Expo SDK 52+ follow [Expo configuration instructions](/intro/expo)
 
-| React Native version(s)            | Supporting CodePush version(s)                                                           |             
-|------------------------------------|------------------------------------------------------------------------------------------|
-| <v0.76                             | Use old Microsoft [CodePush client](https://github.com/microsoft/react-native-code-push) |
-| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | Use [Revopush SDK](https://github.com/revopush/react-native-code-push) (Support both New and Old Architectures)                                                                             |
+| React Native version(s)            | Supporting CodePush version(s)                                                                                                   |             
+|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| <v0.76                             | Use old Microsoft [CodePush client](https://github.com/microsoft/react-native-code-push)                                         |
+| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | Use [Revopush SDK](https://github.com/revopush/react-native-code-push) **v1.5.1** and above (Support both New and Old Architectures) |
 
 #### For this guide we will use Revopush SDK
 
@@ -75,6 +75,14 @@ Go to the  `ios/[ProjectName]/AppDelegate.mm` and replace:
     #endif
 }
 ```
+
+Mobile SDK needs iOS 15.5 and above. Specify a min ios target version in your application pod file:
+
+```c++
+platform :ios, min_ios_version_supported // [!code --]
+platform :ios, '15.5' // [!code ++]
+```
+
 
 #### Setup Android
 
