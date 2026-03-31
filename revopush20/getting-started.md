@@ -27,14 +27,14 @@ First, you need to create an account at the following service: https://app.revop
 
 | React Native version(s)            | Supporting CodePush version(s)              |             
 |------------------------------------|---------------------------------------------|
-| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | @revopush/react-native-code-push@2.5.0-rc.6 |
+| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | @revopush/react-native-code-push@2.5.0-rc.7 |
 
 #### For this guide we will use Revopush SDK
 
 Install Revopush client:
 
 ```bash
-npm install --save @revopush/react-native-code-push@2.5.0-rc.6
+npm install --save @revopush/react-native-code-push@2.5.0-rc.7
 ```
 
 #### Setup iOS
