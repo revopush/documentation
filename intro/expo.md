@@ -20,9 +20,10 @@ This guide will help you to set up your Expo project and make first Revopush rel
 
 Revopush SDK doesn't work with Expo Go because it requires native code changes.
 
-| Expo SDK  | Revopush SDK | Revopush Expo plugin |
-|-----------|--------------|----------------------|
-| 52+       | 1.3.0        | 1.0.0                |
+| Expo SDK | Revopush SDK | Revopush Expo plugin |
+|----------|--------------|----------------------|
+| 52-54    | 1.5.0        | 1.0.0                |
+| 55       | 1.6.0        | 1.1.0                |
 
 #### Install Revopush SDK
 
@@ -137,47 +138,14 @@ Read more about [Revopush CLI](/cli/getting-started)
 
 ## Make a release
 
-Release process contains from 2 steps: generating bundle and releasing it to Revopush.
+Release an update using the Revopush CLI:
 
-### Android
-
-Run [expo export](https://docs.expo.dev/more/expo-cli/#exporting) command to generate production HermesJS bundle and assets:
-
-```bash
-npx expo export:embed \
-  --platform android \
-  --dev false \
-  --reset-cache \
-  --bundle-output ./build-android/index.android.bundle \
-  --assets-dest ./build-android \
-  --bytecode 
+```shell
+revopush release-expo <APPLICATION_NAME> android -d <DEPLOYMENT_NAME> --mandatory
+revopush release-expo <APPLICATION_NAME> ios -d <DEPLOYMENT_NAME> --mandatory
 ```
 
-To release this bundle run:
-
-```bash
-revopush release <APP_NAME> ./build-android <TARGET_VERSION> -d <APP_ENVIRONMENT> --mandatory
-```
-
-### iOS
-
-Run [expo export](https://docs.expo.dev/more/expo-cli/#exporting) command to generate production HermesJS bundle and assets:
-
-```bash
-npx expo export:embed \
-  --platform ios \
-  --dev false \
-  --reset-cache \
-  --bundle-output ./build-ios/main.jsbundle \
-  --assets-dest ./build-ios \
-  --bytecode 
-```
-
-To release this bundle run:
-
-```bash
-revopush release <APP_NAME> ./build-ios <TARGET_VERSION> -d <APP_ENVIRONMENT> --mandatory
-```
+Command `revopush release-expo` supports the same flags as `revopush release-react` but require `@expo/cli` to be installed.
 
 ## Test locally
 

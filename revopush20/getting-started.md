@@ -25,9 +25,10 @@ First, you need to create an account at the following service: https://app.revop
 
 - For React Native **>=0.76**, or you need support for New Architecture, you should use Revopush client SDK.
 
-| React Native version(s)            | Supporting CodePush version(s)              |             
-|------------------------------------|---------------------------------------------|
-| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | @revopush/react-native-code-push@2.5.0-rc.7 |
+| React Native version(s) | Supporting CodePush version(s)              |             
+|-------------------------|---------------------------------------------|
+| 0.76 - 0.82             | @revopush/react-native-code-push@2.5.0-rc.7 |
+| 0.83                    | @revopush/react-native-code-push@1.6.0      |
 
 #### For this guide we will use Revopush SDK
 
@@ -91,8 +92,6 @@ apply plugin: "com.facebook.react"
 apply from: "../../node_modules/@revopush/react-native-code-push/android/codepush.gradle" // [!code ++]
 ```
 
-```kotlin
-
 Then apply changes to MainApplication.kt in the `android/app/src/main/../MainApplication.kt`
 
 ```kotlin
@@ -114,6 +113,30 @@ class MainApplication : Application(), ReactApplication {
 
         override fun getJSMainModuleName(): String = "index"
       }
+}
+```
+
+For React Native 0.83+ 
+
+```kotlin
+import com.facebook.react.soloader.OpenSourceMergedSoMapping
+import com.facebook.soloader.SoLoader
+
+import com.microsoft.codepush.react.CodePush // [!code ++]
+
+class MainApplication : Application(), ReactApplication {
+
+  override val reactHost: ReactHost by lazy {
+    getDefaultReactHost(
+      context = applicationContext,
+      packageList =
+        PackageList(this).packages.apply {
+          // Packages that cannot be autolinked yet can be added manually here, for example:
+          // add(MyReactNativePackage())
+        },
+      jsBundleFilePath = CodePush.getJSBundleFile(), // [!code ++]
+    )
+  }
 }
 ```
 
