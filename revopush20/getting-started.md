@@ -25,17 +25,17 @@ First, you need to create an account at the following service: https://app.revop
 
 - For React Native **>=0.76**, or you need support for New Architecture, you should use Revopush client SDK.
 
-| React Native version(s) | Supporting CodePush version(s)              |             
-|-------------------------|---------------------------------------------|
-| 0.76 - 0.82             | @revopush/react-native-code-push@2.5.0-rc.7 |
-| 0.83                    | @revopush/react-native-code-push@1.6.0      |
+| React Native version(s) | Supporting CodePush version(s)           |             
+|-------------------------|------------------------------------------|
+| 0.76 - 0.82             | @revopush/react-native-code-push@2.5.0   |
+| 0.83                    | @revopush/react-native-code-push@1.6.0   |
 
 #### For this guide we will use Revopush SDK
 
 Install Revopush client:
 
 ```bash
-npm install --save @revopush/react-native-code-push@2.5.0-rc.7
+npm install --save @revopush/react-native-code-push@2.5.0
 ```
 
 #### Setup iOS
