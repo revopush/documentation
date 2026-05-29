@@ -116,6 +116,13 @@ export default defineConfig({
                     {text: 'CircleCI', link: '/cicd/circleci'},
                     {text: 'Sentry', link: '/cicd/sentry'},
                 ]
+            },
+            {
+                text: 'Billing & Payments',
+                collapsed: true,
+                items: [
+                    {text: 'How billing works', link: '/billing/billing'},
+                ]
             }
         ],
 
