@@ -22,7 +22,7 @@ Revopush SDK doesn't work with Expo Go because it requires native code changes.
 
 | Expo SDK | Revopush SDK | Revopush Expo plugin |
 |----------|--------------|----------------------|
-| 52-54    | 1.5.0        | 1.0.0                |
+| 52-54    | 1.5.0        | 1.0.1                |
 | 55       | 1.6.0        | 1.1.0                |
 
 #### Install Revopush SDK
