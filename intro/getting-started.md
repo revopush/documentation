@@ -50,13 +50,14 @@ Go to the  `ios/[ProjectName]/AppDelegate.swift` and replace:
 ```swift
 import CodePush // [!code ++]
 
-override func bundleURL() -> URL? {
-#if DEBUG
-    RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
-#else
-    Bundle.main.url(forResource: "main", withExtension: "jsbundle") // [!code --]
-    CodePush.bundleURL() // [!code ++]
-#endif
+       override func bundleURL() -> URL? {
+       #if DEBUG
+           Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+           return CodePush.bundleURL()
+       #else
+           Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+           return CodePush.bundleURL()
+       #endif
 }
 ```
 

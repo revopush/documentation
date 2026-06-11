@@ -47,10 +47,11 @@ import CodePush // [!code ++]
 
 override func bundleURL() -> URL? {
 #if DEBUG
-    RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+    Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+    return CodePush.bundleURL()
 #else
-    Bundle.main.url(forResource: "main", withExtension: "jsbundle") // [!code --]
-    CodePush.bundleURL() // [!code ++]
+    Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+    return CodePush.bundleURL()
 #endif
 }
 ```

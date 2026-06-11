@@ -62,13 +62,16 @@ Once you've acquired the CodePush plugin, you need to integrate it into the Xcod
 
        Your `bundleUrl` method should look like this:
        ```swift
+       import CodePush // [!code ++]
+       
        override func bundleURL() -> URL? {
        #if DEBUG
-          RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+           Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+           return CodePush.bundleURL()
        #else
-          CodePush.bundleURL()
+           Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+           return CodePush.bundleURL()
        #endif
-       }
        ```
 
 4. Add the Deployment key to `Info.plist`:
