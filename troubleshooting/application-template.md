@@ -41,7 +41,7 @@ import CodePush // [!code ++]
 
 Go to the  `ios/[ProjectName]/AppDelegate.mm` and replace:
 
-```Obj-c
+```objc
 #import <CodePush/CodePush.h> // [!code ++]
 
 - (NSURL *)bundleURL

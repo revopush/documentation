@@ -58,7 +58,7 @@ override func bundleURL() -> URL? {
 
 Go to the  `ios/[ProjectName]/AppDelegate.mm` and replace:
 
-```Objc
+```objc
 #import <CodePush/CodePush.h> // [!code ++]
 
 - (NSURL *)bundleURL
