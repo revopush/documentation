@@ -7,7 +7,7 @@ In order to integrate CodePush into your Android project, please perform the fol
 
 1. In your `android/app/build.gradle` file, add the `codepush.gradle` file as an additional build task definition to the end of the file:
 
-    ```gradle
+    ```groovy
     ...
     apply from: "../../node_modules/@revopush/react-native-code-push/android/codepush.gradle"
     ...
