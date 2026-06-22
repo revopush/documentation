@@ -10,10 +10,10 @@ Closes #
 
 ## Changes
 
-<!-- Bullet list of pages/sections added, updated, or removed. -->
+<!-- Bullet list of what was added, updated, or removed. -->
 
 -
 
 ## How was this tested?
 
-<!-- e.g. ran pnpm docs:build locally, checked links, verified on Cloudflare Pages preview -->
+<!-- e.g. ran locally, checked the preview deployment, verified on staging -->

@@ -2,17 +2,25 @@
   "packageManager": "pnpm@10.11.1",
   "scripts": {
     "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
+    "build": "vitepress build",
+    "build:preview": "vitepress build",
+    "build:production": "vitepress build",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
-    "vitepress": "^1.6.4"
+    "typescript": "^6.0.3",
+    "vitepress": "^1.6.4",
+    "vitest": "^3.2.6"
   },
   "engines": {
     "node": ">=22.0.0",
     "pnpm": ">=10"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

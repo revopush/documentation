@@ -1,0 +1,63 @@
+# Manual promotion of any main commit to production. Gated by the "production" environment approval.
+name: Deploy Production
+
+run-name: "Promote ${{ inputs.ref }} to production by @${{ github.actor }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Commit SHA (or ref) on main to promote"
+        required: true
+        default: main
+        type: string
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: production
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
+        with:
+          fetch-depth: 0
+          filter: blob:none
+
+      - name: Resolve and validate ref
+        id: resolve
+        env:
+          REF: ${{ inputs.ref }}
+        run: |
+          sha=$(git rev-parse --verify "$REF^{commit}")
+          if ! git merge-base --is-ancestor "$sha" origin/main; then
+            echo "::error::$REF ($sha) is not on main — only main history can be promoted to production"
+            exit 1
+          fi
+          echo "sha=$sha" >> $GITHUB_OUTPUT
+          git checkout --quiet "$sha"
+
+      - uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271  # v6.0.9
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e  # v6.4.0
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build:production
+        env:
+          VITE_APP_VERSION: ${{ steps.resolve.outputs.sha }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+
+      - uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0  # v4.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy --branch=main
