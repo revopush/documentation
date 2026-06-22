@@ -9,25 +9,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    permissions:
-      contents: read
-    outputs:
-      has-staging: ${{ steps.check.outputs.has-staging }}
-    steps:
-      - id: check
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          has_staging=false
-          gh api "repos/${{ github.repository }}/contents/wrangler.staging.toml" --silent 2>/dev/null && has_staging=true
-          echo "has-staging=$has_staging" >> $GITHUB_OUTPUT
-
   preview:
-    needs: check
-    if: needs.check.outputs.has-staging == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
@@ -47,5 +29,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy --config wrangler.staging.toml --branch="${{ github.head_ref }}"
+          command: pages deploy --branch="${{ github.head_ref }}"
           gitHubToken: ${{ github.token }}

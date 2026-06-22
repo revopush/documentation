@@ -1,5 +1,5 @@
 # Runs after CI passes on main → staging deploy.
-# Skipped automatically when wrangler.staging.toml is absent (e.g. sites with no staging environment).
+# Requires CLOUDFLARE_PAGES_PROJECT repo variable to be set; skipped when absent.
 name: Deploy Staging
 
 on:
@@ -13,26 +13,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  check:
-    if: github.event.workflow_run.conclusion == 'success'
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    permissions:
-      contents: read
-    outputs:
-      has-staging: ${{ steps.check.outputs.has-staging }}
-    steps:
-      - id: check
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          has_staging=false
-          gh api "repos/${{ github.repository }}/contents/wrangler.staging.toml" --silent 2>/dev/null && has_staging=true
-          echo "has-staging=$has_staging" >> $GITHUB_OUTPUT
-
   deploy:
-    needs: check
-    if: needs.check.outputs.has-staging == 'true'
+    if: github.event.workflow_run.conclusion == 'success' && vars.CLOUDFLARE_PAGES_PROJECT != ''
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment: staging
@@ -56,4 +38,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy --config wrangler.staging.toml --branch=main
+          command: pages deploy --project-name ${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=main
