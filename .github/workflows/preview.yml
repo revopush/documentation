@@ -10,8 +10,10 @@ concurrency:
 
 jobs:
   preview:
+    if: vars.CLOUDFLARE_PAGES_PROJECT != ''
     runs-on: ubuntu-24.04
     timeout-minutes: 10
+    environment: preview
     permissions:
       contents: read
       deployments: write
@@ -29,5 +31,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy --branch="${{ github.head_ref }}"
+          command: pages deploy dist --project-name ${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch="${{ github.head_ref }}"
           gitHubToken: ${{ github.token }}
