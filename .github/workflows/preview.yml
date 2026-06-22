@@ -1,16 +1,22 @@
-name: Deploy to Cloudflare Pages
+name: Preview
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  deployments: write
+  pull-requests: write
+
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  preview:
     runs-on: ubuntu-24.04
-    permissions:
-      contents: read
-      deployments: write
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
 
@@ -29,4 +35,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy --branch=main
+          command: pages deploy --branch=${{ github.head_ref }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
