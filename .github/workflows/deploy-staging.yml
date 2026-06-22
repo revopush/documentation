@@ -52,8 +52,10 @@ jobs:
         env:
           VITE_APP_VERSION: ${{ github.sha }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      - id: staging
+        run: echo "project=$(sed -n 's/^name = "\(.*\)"/\1/p' wrangler.staging.toml)" >> $GITHUB_OUTPUT
       - uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0  # v4.0.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy --config wrangler.staging.toml --branch=main
+          command: pages deploy --project-name ${{ steps.staging.outputs.project }} --branch=main
