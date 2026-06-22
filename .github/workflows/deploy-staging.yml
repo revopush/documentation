@@ -1,5 +1,5 @@
 # Runs after CI passes on main → staging deploy.
-# Requires CLOUDFLARE_PAGES_PROJECT repo variable to be set; skipped when absent.
+# Gated on the CLOUDFLARE_PAGES_PROJECT repo variable: skipped in repos without staging.
 name: Deploy Staging
 
 on:
@@ -38,4 +38,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy --project-name ${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=main
+          command: pages deploy dist --project-name ${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=main

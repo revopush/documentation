@@ -4,6 +4,8 @@ import {defineConfig} from 'vitepress'
 export default defineConfig({
     title: "Revopush",
     description: "Revopush the Ultimate Alternative to CodePush",
+    // Emit static files to ./dist (repo root) so the shared `pages deploy dist` workflow works out of the box.
+    outDir: 'dist',
     head: [
         ['link', {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
         [

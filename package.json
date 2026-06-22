@@ -4,6 +4,7 @@
     "docs:dev": "vitepress dev",
     "build": "vitepress build",
     "build:preview": "vitepress build",
+    "build:staging": "vitepress build",
     "build:production": "vitepress build",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
