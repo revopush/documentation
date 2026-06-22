@@ -26,11 +26,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if gh api "repos/${{ github.repository }}/contents/wrangler.staging.toml" --silent 2>/dev/null; then
-            echo "has-staging=true" >> $GITHUB_OUTPUT
-          else
-            echo "has-staging=false" >> $GITHUB_OUTPUT
-          fi
+          has_staging=false
+          gh api "repos/${{ github.repository }}/contents/wrangler.staging.toml" --silent 2>/dev/null && has_staging=true
+          echo "has-staging=$has_staging" >> $GITHUB_OUTPUT
 
   deploy:
     needs: check
