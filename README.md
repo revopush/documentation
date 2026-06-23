@@ -35,3 +35,5 @@ The following secrets must be set in the repository settings:
 |---|---|
 | `CLOUDFLARE_API_TOKEN` | Cloudflare API token with Pages Edit permission |
 | `CLOUDFLARE_ACCOUNT_ID` | Cloudflare account ID |
+
+test
