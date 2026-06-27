@@ -2,6 +2,33 @@
 
 This guide will help you to set up your Expo project and make first Revopush release.
 
+## Set up with an AI agent
+
+If you use an AI coding agent (Claude Code, Cursor, Codex, Gemini CLI, etc.), you can let it do the integration for you using our official agent skills from the [revopush/skills](https://github.com/revopush/skills) repository. The skills cover both Expo and plain React Native projects.
+
+Install the skills — for **Claude Code**:
+
+```shell
+/plugin marketplace add revopush/skills
+/plugin install revopush
+```
+
+For any other agent that supports the portable [`skills`](https://github.com/revopush/skills) CLI:
+
+```shell
+npx skills add https://github.com/revopush/skills
+```
+
+Then ask the agent to set everything up, for example:
+
+> Integrate Revopush OTA into my Expo project. Install the SDK and the Expo config plugin, configure the deployment keys in my app config, run prebuild, and wrap my root layout with `codePush()`.
+
+::: tip
+You still need a Revopush account, an application with deployment keys, and the [Revopush CLI](/cli/getting-started) to publish releases. The agent only handles the in-codebase integration described below.
+:::
+
+Prefer to do it by hand? Follow the manual steps below.
+
 ## Create an application
 
 1. Go to [Applications](https://app.revopush.org/applications) and add an application

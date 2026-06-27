@@ -2,6 +2,41 @@
 
 This 5-minute guide will help you to set up your first Revopush integration
 
+## Set up with an AI agent
+
+If you use an AI coding agent (Claude Code, Cursor, Codex, Gemini CLI, etc.), the fastest way to integrate Revopush is to install our official agent skills from the [revopush/skills](https://github.com/revopush/skills) repository. The agent will then wire up the native iOS/Android (or Expo) changes, the JS `codePush()` wrapper, and the deployment keys for you — for both plain **React Native** and **Expo** projects.
+
+#### Install the skills
+
+For **Claude Code**, add the marketplace and install the plugin:
+
+```shell
+/plugin marketplace add revopush/skills
+/plugin install revopush
+```
+
+For any other agent that supports the portable [`skills`](https://github.com/revopush/skills) CLI:
+
+```shell
+npx skills add https://github.com/revopush/skills
+```
+
+#### Ask the agent to set up Revopush
+
+Once the skill is installed, just describe what you want in plain language and the agent will pick up the right skill automatically. For example:
+
+> Set up Revopush OTA updates in my React Native app. Add the iOS and Android native integration, wrap my root component with `codePush()`, and add a deployment key placeholder I can fill in.
+
+For an Expo project:
+
+> Integrate Revopush OTA into my Expo project. Install the SDK and the Expo config plugin, configure the deployment keys in my app config, run prebuild, and wrap my root layout with `codePush()`.
+
+::: tip
+You still need a Revopush account and an application with deployment keys (see below). The agent integrates the SDK in your codebase — you provide the keys from the dashboard and use the [Revopush CLI](/cli/getting-started) to publish releases.
+:::
+
+Prefer to do it by hand? Follow the manual steps below.
+
 ## Create an account
 
 First, you need to create an account at the following service: https://app.revopush.org/register
