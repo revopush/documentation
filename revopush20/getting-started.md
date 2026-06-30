@@ -25,17 +25,22 @@ First, you need to create an account at the following service: https://app.revop
 
 - For React Native **>=0.76**, or you need support for New Architecture, you should use Revopush client SDK.
 
-| React Native version(s) | Supporting CodePush version(s)           |             
-|-------------------------|------------------------------------------|
-| 0.76 - 0.82             | @revopush/react-native-code-push@2.5.1   |
-| 0.83                    | @revopush/react-native-code-push@1.6.0   |
+> Only legacy apps still on the original **Microsoft CodePush** client (React Native **< 0.76**, Old Architecture only) need to stay on the old client. Everyone else should use the Revopush **2.x** SDK by default.
+
+| Platform     | Version(s)             | Supporting Revopush SDK version(s)                                                               |
+|--------------|------------------------|-------------------------------------------------------------------------------------------------|
+| React Native | < 0.76 (Old Arch only) | Use the legacy Microsoft [CodePush client](https://github.com/microsoft/react-native-code-push) |
+| React Native | 0.76 – 0.82            | `@revopush/react-native-code-push@2.5.x` (New & Old Architecture)                               |
+| React Native | 0.83 and above         | `@revopush/react-native-code-push@2.6.x` (New & Old Architecture)                               |
+| Expo SDK     | 52 – 54                | `@revopush/react-native-code-push@2.5.x` + Expo plugin `1.0.x` — see [Expo guide](/intro/expo)  |
+| Expo SDK     | 55 and above           | `@revopush/react-native-code-push@2.6.x` + Expo plugin `1.1.x` — see [Expo guide](/intro/expo)  |
 
 #### For this guide we will use Revopush SDK
 
 Install Revopush client:
 
 ```bash
-npm install --save @revopush/react-native-code-push@2.5.1
+npm install --save @revopush/react-native-code-push
 ```
 
 #### Setup iOS
