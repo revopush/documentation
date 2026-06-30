@@ -47,8 +47,6 @@ Prefer to do it by hand? Follow the manual steps below.
 
 Revopush SDK doesn't work with Expo Go because it requires native code changes.
 
-> Only legacy apps still on the original **Microsoft CodePush** client need to stay on the old client. Everyone else should use the Revopush **2.x** SDK by default.
-
 | Expo SDK     | Revopush SDK | Revopush Expo plugin |
 |--------------|--------------|----------------------|
 | 52 – 54      | 2.5.x        | 1.0.x                |
