@@ -65,10 +65,15 @@ First, you need to decide what client SDK to use. We support two options:
 - For React Native **>=0.76**, or you need support for New Architecture, you should use Revopush client SDK.
 - For Expo SDK 52+ follow [Expo configuration instructions](/intro/expo)
 
-| React Native version(s)            | Supporting CodePush version(s)                                                                                                   |             
-|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| <v0.76                             | Use old Microsoft [CodePush client](https://github.com/microsoft/react-native-code-push)                                         |
-| 0.76, 0.77, 0.78, 0.79, 0.80, 0.81 | Use [Revopush SDK](https://github.com/revopush/react-native-code-push) **v1.5.1** and above (Support both New and Old Architectures) |
+> Only legacy apps still on the original **Microsoft CodePush** client (React Native **< 0.76**, Old Architecture only) need to stay on the old client. Everyone else should use the Revopush **2.x** SDK by default.
+
+| Platform     | Version(s)             | Supporting Revopush SDK version(s)                                                                     |
+|--------------|------------------------|-------------------------------------------------------------------------------------------------------|
+| React Native | < 0.76 (Old Arch only) | Use the legacy Microsoft [CodePush client](https://github.com/microsoft/react-native-code-push)       |
+| React Native | 0.76 – 0.82            | [Revopush SDK](https://github.com/revopush/react-native-code-push) **2.5.x** (New & Old Architecture)  |
+| React Native | 0.83 and above         | [Revopush SDK](https://github.com/revopush/react-native-code-push) **2.6.x** (New & Old Architecture)  |
+| Expo SDK     | 52 – 54                | Revopush SDK **2.5.x** + Expo plugin **1.0.x** — see [Expo guide](/intro/expo)                         |
+| Expo SDK     | 55 and above           | Revopush SDK **2.6.x** + Expo plugin **1.1.x** — see [Expo guide](/intro/expo)                         |
 
 #### For this guide we will use Revopush SDK
 
