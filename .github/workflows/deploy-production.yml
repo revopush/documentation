@@ -61,3 +61,12 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name ${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=main
+
+      - name: Notify Slack
+        if: always()
+        uses: ./.github/actions/notify-deploy
+        with:
+          slack-webhook: ${{ secrets.SLACK_DEPLOY_WEBHOOK }}
+          status: ${{ job.status }}
+          environment: production
+          sha: ${{ steps.resolve.outputs.sha }}
