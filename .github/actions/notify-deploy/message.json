@@ -1,0 +1,33 @@
+{
+  "text": "{{env.SLACK_TITLE}} {{env.SLACK_STATUS}}: {{env.GITHUB_REPOSITORY}} ({{env.SLACK_ENV}})",
+  "attachments": [
+    {
+      "color": "{{if env.SLACK_STATUS|equals>success}}#2eb67d{{else}}{{if env.SLACK_STATUS|equals>failure}}#e01e5a{{else}}#667085{{/if}}{{/if}}",
+      "blocks": [
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "{{if env.SLACK_STATUS|equals>success}}✅{{else}}{{if env.SLACK_STATUS|equals>failure}}❌{{else}}⚪{{/if}}{{/if}} `{{env.GITHUB_REPOSITORY}}`  ·  *{{env.SLACK_TITLE}} {{if env.SLACK_STATUS|equals>success}}succeeded{{else}}{{if env.SLACK_STATUS|equals>failure}}failed{{else}}{{env.SLACK_STATUS}}{{/if}}{{/if}}*  ·  {{env.SLACK_ENV}}{{if env.SLACK_SUMMARY|notempty}}\n{{env.SLACK_SUMMARY}}{{/if}}"
+          }
+        },
+        {
+          "type": "section",
+          "fields": [
+            { "type": "mrkdwn", "text": "*Commit:*\n<{{env.GITHUB_SERVER_URL}}/{{env.GITHUB_REPOSITORY}}/commit/{{env.SLACK_SHA}}|`{{env.SLACK_SHA|limit>7}}`>" },
+            { "type": "mrkdwn", "text": "*Triggered by:*\n<{{env.GITHUB_SERVER_URL}}/{{env.GITHUB_ACTOR}}|@{{env.GITHUB_ACTOR}}>" },
+            { "type": "mrkdwn", "text": "*Version:*\n`{{if env.SLACK_VERSION|notempty}}{{env.SLACK_VERSION}}{{else}}{{env.SLACK_SHA|limit>7}}{{/if}}`" }
+          ]
+        },
+        {
+          "type": "actions",
+          "elements": [
+            { "type": "button", "text": { "type": "plain_text", "text": "CI run" }, "url": "{{env.GITHUB_SERVER_URL}}/{{env.GITHUB_REPOSITORY}}/actions/runs/{{env.GITHUB_RUN_ID}}" },
+            { "type": "button", "text": { "type": "plain_text", "text": "Changes" }, "url": "{{if env.SLACK_CHANGES_URL|notempty}}{{env.SLACK_CHANGES_URL}}{{else}}{{env.GITHUB_SERVER_URL}}/{{env.GITHUB_REPOSITORY}}/commit/{{env.SLACK_SHA}}{{/if}}" },
+            { "type": "button", "text": { "type": "plain_text", "text": "Open {{env.SLACK_ENV}}" }, "url": "{{if env.SLACK_SERVICE_URL|notempty}}{{env.SLACK_SERVICE_URL}}{{else}}{{env.GITHUB_SERVER_URL}}/{{env.GITHUB_REPOSITORY}}/deployments/{{env.SLACK_ENV}}{{/if}}", "style": "primary" }
+          ]
+        }
+      ]
+    }
+  ]
+}
