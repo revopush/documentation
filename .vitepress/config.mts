@@ -86,6 +86,7 @@ export default defineConfig({
                     {text: 'Rolling Back Updates', link: '/cli/rolling-back-updates'},
                     {text: 'Release History', link: '/cli/release-history'},
                     {text: 'Code Signing', link: '/cli/code-signing'},
+                    {text: 'Changelog', link: '/cli/changelog'},
                 ]
             },
             {
@@ -100,6 +101,7 @@ export default defineConfig({
                     {text: 'iOS API', link: '/sdk/api-ios'},
                     {text: 'Multi-Deployment Testing iOS', link: '/sdk/multi-deployment-testing-ios'},
                     {text: 'Multi-Deployment Testing Android', link: '/sdk/multi-deployment-testing-android'},
+                    {text: 'Changelog', link: '/sdk/changelog'},
                 ]
             },
             {
