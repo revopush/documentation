@@ -1,0 +1,65 @@
+# Rich, best-effort Slack deploy/rollback notification.
+# Canonical source in shared-workflows; synced into consumer repos as a local action.
+# All presentation lives in message.json — a Block Kit template you can paste into
+# app.slack.com/block-kit-builder. This action just wires inputs into env vars that the
+# template reads (payload-templated substitutes + escapes them). Best-effort: never fails the job.
+name: Notify deploy
+description: Post a rich deployment/rollback status message to Slack. Best-effort — never fails the job.
+
+inputs:
+  slack-webhook:
+    description: Slack incoming webhook URL. If empty, the notification is skipped.
+    required: true
+  status:
+    description: "Job status: success | failure | cancelled (callers pass job.status)."
+    required: true
+  environment:
+    description: Deploy target environment (e.g. staging, production).
+    required: true
+  title:
+    description: Action noun shown in the header (Deploy | Rollback).
+    required: false
+    default: Deploy
+  version:
+    description: Component version/ref for the Version field. Defaults to the short commit sha.
+    required: false
+    default: ""
+  sha:
+    description: The commit actually deployed. Defaults to the workflow sha; pass the resolved sha for promotions.
+    required: false
+    default: ${{ github.sha }}
+  service-url:
+    description: Live service URL for the "Open <environment>" button. Defaults to the GitHub deployments page.
+    required: false
+    default: ""
+  changes-url:
+    description: Diff/compare URL for the "Changes" button. Defaults to the deployed commit.
+    required: false
+    default: ""
+  summary:
+    description: Extra mrkdwn appended under the header (e.g. a rollback worker/version table). Multi-line is safe.
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+    - name: Notify Slack
+      if: ${{ inputs.slack-webhook != '' }}
+      continue-on-error: true
+      uses: slackapi/slack-github-action@45a88b9581bfab2566dc881e2cd66d334e621e2c # v3.0.3
+      env:
+        SLACK_STATUS: ${{ inputs.status }}
+        SLACK_TITLE: ${{ inputs.title }}
+        SLACK_ENV: ${{ inputs.environment }}
+        SLACK_VERSION: ${{ inputs.version }}
+        SLACK_SHA: ${{ inputs.sha }}
+        SLACK_SERVICE_URL: ${{ inputs.service-url }}
+        SLACK_CHANGES_URL: ${{ inputs.changes-url }}
+        SLACK_SUMMARY: ${{ inputs.summary }}
+      with:
+        webhook: ${{ inputs.slack-webhook }}
+        webhook-type: incoming-webhook
+        errors: "false"
+        payload-file-path: ${{ github.action_path }}/message.json
+        payload-templated: true
