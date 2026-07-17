@@ -40,7 +40,7 @@ jobs:
             echo "::error::$REF ($sha) is not on main — only main history can be promoted to production"
             exit 1
           fi
-          echo "sha=$sha" >> $GITHUB_OUTPUT
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
           git checkout --quiet "$sha"
 
       - uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271  # v6.0.9
