@@ -1,7 +1,40 @@
 version: 2
+# Single source of truth for npm/pnpm Dependabot config, synced to
+# .github/dependabot.yml in every workers/ and pages/ repo (see .github/sync.yml).
+# Edit here only — the per-repo copies are overwritten on each sync.
+#
+# package-ecosystem: npm covers both pnpm-lock.yaml (workers) and
+# package-lock.json (pages).
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  # versioning-strategy: lockfile-only => package.json ranges are NEVER touched;
+  # Dependabot only re-resolves the lockfile within the existing semver ranges.
+  # Security PRs (enabled via the org's Dependabot security updates setting)
+  # inherit this strategy, so they too stay lockfile-only. Action SHA updates
+  # are owned by revopush/shared-workflows and arrive via automated-sync PRs.
+  - package-ecosystem: npm # also covers pnpm-lock.yaml
+    directory: /
+    # Dependabot's scheduler supports only daily/weekly/monthly — there is no
+    # cron / twice-weekly option (that is a Renovate feature). Weekly it is.
     schedule:
-      interval: "weekly"
+      interval: weekly
+      day: monday
+    versioning-strategy: lockfile-only
     open-pull-requests-limit: 5
+    labels: ["dependencies"]
+    commit-message:
+      prefix: "chore(deps)"
+    # Let a fresh release sit before adopting it, so a compromised publish is
+    # likely detected and yanked first. Security updates bypass cooldown and
+    # still open immediately. (Dependabot's built-in default is 3 days; we
+    # extend to 7 to cover slower-burn supply-chain campaigns.)
+    cooldown:
+      default-days: 7
+    groups:
+      # One combined PR for security fixes; fires immediately on new advisories.
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
+      # One combined PR for routine in-range lockfile refreshes (weekly).
+      lockfile:
+        applies-to: version-updates
+        patterns: ["*"]
