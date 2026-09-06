@@ -1,5 +1,13 @@
 # CLI changelog
 
+## 0.0.15 — August 26, 2026
+
+- Added release size checks to `release-react` and `release-expo`. Assets over 500 KiB block the release unless `--force` is passed, bundles over 10 MiB trigger a warning recommending diff updates, and bundled source maps prompt Sentry upload guidance.
+- A custom `--outputDir` must now end with a folder named `CodePush` so diff updates can locate the base bundle.
+- Removed Windows as a `release-react` platform target.
+- Improved `package.json` validation errors and cleaned up the temporary output folder after releases.
+- Replaced dependencies with known vulnerabilities.
+
 ## 0.0.13 — June 15, 2026
 
 - Added support for reading Android versions from Kotlin DSL (`build.gradle.kts`) projects.
