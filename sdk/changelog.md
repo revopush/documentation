@@ -8,6 +8,14 @@ Revopush maintains two SDK release lines and an Expo config plugin:
 
 ## SDK 2.x
 
+### 2.6.1 — September 7, 2026
+
+- Added shadow base release support on Android and iOS: a differential update can now be applied against a previous OTA release, not only the bundle shipped in the binary.
+
+### 2.5.2 — September 7, 2026
+
+- Backported shadow base release support from 2.6.1.
+
 ### 2.6.0 — June 22, 2026
 
 - Added React Native 0.83 compatibility on Android and iOS, including updated native-module and React host integration.
