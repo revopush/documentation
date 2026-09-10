@@ -13,7 +13,7 @@
   "devDependencies": {
     "typescript": "^6.0.3",
     "vitepress": "^1.6.4",
-    "vitest": "^3.2.6"
+    "vitest": "^4.1.11"
   },
   "engines": {
     "node": ">=22.0.0",
