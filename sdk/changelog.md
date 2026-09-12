@@ -8,6 +8,14 @@ Revopush maintains two SDK release lines and an Expo config plugin:
 
 ## SDK 2.x
 
+### 2.6.2 — September 12, 2026
+
+- Fixed a crash on some Android devices when installing an update.
+
+### 2.5.3 — September 12, 2026
+
+- Backported the Android install crash fix from 2.6.2.
+
 ### 2.6.1 — September 7, 2026
 
 - Added shadow base release support on Android and iOS: a differential update can now be applied against a previous OTA release, not only the bundle shipped in the binary.
