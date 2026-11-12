@@ -10,6 +10,7 @@ Revopush maintains two SDK release lines and an Expo config plugin:
 
 ### 2.6.3 — Unreleased
 
+- Fixed the first diff update after a store install falling back to a full download on Android apps that enable `shrinkResources` (React Native 0.80 and later). Takes effect from your next store build.
 - Fixed linker warnings for apps targeting iOS 15.5.
 - Updated dependencies.
 
