@@ -10,6 +10,12 @@ This snapshot is then used as a baseline to generate diffs only for assets and t
 
 As a result, update payload sizes are reduced by 10–20×, and update delivery to users becomes significantly faster.
 
+::: warning Android: XML images are not covered by diff updates
+An OTA release cannot replicate what the Android build does to XML images. Android compiles XML images such as [vector drawables](https://developer.android.com/develop/ui/views/graphics/vector-drawable-resources) into a [binary format](https://developer.android.com/tools/aapt2#compile) when it builds your app, while a Revopush release contains the original text file, so the two never match.
+
+If your JavaScript loads an XML image, for example `require('./icon.xml')`, the first update after each store release is downloaded as a full package instead of a diff. PNG, JPG, WebP, fonts and other assets are not affected.
+:::
+
 To create a base release, you first need to build release APK/IPA files for the target platform and then provide these files as CLI parameters to create the base release.
 
 ```shell
